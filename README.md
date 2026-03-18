@@ -106,33 +106,9 @@ ARG=$(shuf -i 1-10000 -n 500 | tr '\n' ' ')
 
 A `tests/` folder is provided for easier testing and benchmarking. It contains:
 
-- `checker_mac` – the checker executable for macOS
-- `checker_linux` – the checker executable for Linux  
-- Additional test scripts and files for automated benchmarking  
-
-### Testing with the checker
-
-From the `tests/` folder, you can manually verify if `push_swap` correctly sorts a list of numbers.
-
-**Example (macOS):**
-
-```bash
-ARG=$(python3 rng.py 100)
-../push_swap "${ARG}" | ./checker_mac "${ARG}"
-```
-
-**Example (Linux):**
-
-```bash
-ARG=$(python3 rng.py 100)
-../push_swap "${ARG}" | ./checker_linux "${ARG}"
-```
-
-- `rng.py` generates a list of random integers.  
-- `push_swap` prints the sequence of operations to sort the list.  
-- The checker reads these operations and prints **OK** if the list is sorted, or **KO** otherwise.  
-
----
+- `rng.py` – generates a list of random integers.  
+- `range.sh` – script to run `push_swap` on a default set of numbers and verify sorting.  
+- `benchmark.sh` – script to run `push_swap` multiple times, gather statistics, and verify sorting. 
 
 ### Running the range script
 
@@ -140,8 +116,7 @@ ARG=$(python3 rng.py 100)
 ./range.sh
 ```
 
-- The script will detect your OS and use the appropriate checker (`checker_mac` or `checker_linux`). 
-- It runs `push_swap` on a set of random numbers (500 by default) and uses the OS-specific checker to verify that the output is correctly sorted.
+- The script runs `push_swap` on a set of random numbers (500 by default) and uses the `checker` program  to verify that the output is correctly sorted.
 
 ### Running the benchmark script
 
@@ -149,10 +124,6 @@ ARG=$(python3 rng.py 100)
 ./benchmark.sh
 ```
 
-- The script will detect your OS and use the appropriate checker (`checker_mac` or `checker_linux`).  
-- It will prompt for the number of runs and generate random test cases.  
-- At the end, it will report **Best**, **Worst**, and **Average** number of operations.  
-
-
-
-
+- The script uses the `checker` program to verify that the numbers are sorted correctly.
+- It will prompt for the number of runs and generate random test cases.
+- At the end, it will report **Best**, **Worst**, and **Average** number of operations.

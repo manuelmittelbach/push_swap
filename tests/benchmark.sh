@@ -1,14 +1,6 @@
 #!/bin/bash
 
-OS_NAME="$(uname)"
-if [[ "$OS_NAME" == "Darwin" ]]; then
-    CHECKER="./checker_mac"
-elif [[ "$OS_NAME" == "Linux" ]]; then
-    CHECKER="./checker_linux"
-else
-    echo "Unsupported OS: $OS_NAME"
-    exit 1
-fi
+CHECKER="../checker"
 
 if [ $# -eq 0 ]; then
 	NUMS=(100 500)
@@ -20,7 +12,7 @@ echo
 echo "Number of runs?"
 read RUNS
 
-make -C .. && make -C .. clean
+make -C .. && make bonus -C .. && make -C .. clean
 
 for N in "${NUMS[@]}"; do
 	echo
@@ -43,10 +35,15 @@ for N in "${NUMS[@]}"; do
 		TOTAL=$((TOTAL + OPS))
 
 		if [ -f "$CHECKER" ]; then
-			RESULT=$(../push_swap $ARG | $CHECKER $ARG)
-			if [ "$RESULT" != "OK" ]; then
+			RESULT=$(../push_swap "${ARG}" | $CHECKER "${ARG}")
+			if [ "$RESULT" == "OK" ]; then
+				echo "Checker verified push_swap output successfully!"
+			else
 				echo "Checker failed on run $i: $RESULT"
+				exit 1
 			fi
+		else
+			echo "No checker found, skipping verification!"
 		fi
 	done
 
