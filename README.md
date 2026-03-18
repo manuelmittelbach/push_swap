@@ -104,40 +104,28 @@ ARG=$(shuf -i 1-10000 -n 500 | tr '\n' ' ')
 
 ## More Testing
 
-To make testing easier, a `tests.tar` archive is provided. It contains:
+A `tests/` folder is provided for easier testing and benchmarking. It contains:
 
 - `checker_mac` – the checker executable for macOS
 - `checker_linux` – the checker executable for Linux  
 - Additional test scripts and files for automated benchmarking  
 
-### Extracting the archive
+### Testing with the checker
 
-Open a terminal in the folder where `tests.tar` is located and extract the files like this:
+From the `tests/` folder, you can manually verify if `push_swap` correctly sorts a list of numbers.
 
-```bash
-tar -xf tests.tar
-```
-
-After extraction, you should see `checker_mac`, `checker_linux`, and the test scripts in the same folder.  
-
----
-
-### Running the checkers manually
-
-You can use the checkers to verify if `push_swap` correctly sorts a list of numbers.
-
-#### Example (macOS):
+**Example (macOS):**
 
 ```bash
 ARG=$(python3 rng.py 100)
-./push_swap "$ARG" | ./checker_mac "$ARG"
+../push_swap "${ARG}" | ./checker_mac "${ARG}"
 ```
 
-#### Example (Linux):
+**Example (Linux):**
 
 ```bash
 ARG=$(python3 rng.py 100)
-./push_swap "$ARG" | ./checker_linux "$ARG"
+../push_swap "${ARG}" | ./checker_linux "${ARG}"
 ```
 
 - `rng.py` generates a list of random integers.  
@@ -146,16 +134,19 @@ ARG=$(python3 rng.py 100)
 
 ---
 
-### Running the benchmark scripts
-
-Since the scripts are already executable, you can run them directly:
-
-```bash
-./benchmark.sh
-```
+### Running the range script
 
 ```bash
 ./range.sh
+```
+
+- The script will detect your OS and use the appropriate checker (`checker_mac` or `checker_linux`). 
+- It runs `push_swap` on a set of random numbers (500 by default) and uses the OS-specific checker to verify that the output is correctly sorted.
+
+### Running the benchmark script
+
+```bash
+./benchmark.sh
 ```
 
 - The script will detect your OS and use the appropriate checker (`checker_mac` or `checker_linux`).  
