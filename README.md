@@ -127,3 +127,7 @@ A `tests/` folder is provided for easier testing and benchmarking. It contains:
 - The script uses the `checker` program to verify that the numbers are sorted correctly.
 - It will prompt for the number of runs and generate random test cases.
 - At the end, it will report **Best**, **Worst**, and **Average** number of operations.
+
+## Visualization
+
+You can also visually inspect how the sorting algorithm performs using an external visualizer project.
