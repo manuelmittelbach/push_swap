@@ -124,10 +124,14 @@ A `tests/` folder is provided for easier testing and benchmarking. It contains:
 ./benchmark.sh
 ```
 
-- The script uses the `checker` program to verify that the numbers are sorted correctly.
+- The script uses the bonus checker to verify that the numbers are sorted correctly.
 - It will prompt for the number of runs and generate random test cases.
 - At the end, it will report **Best**, **Worst**, and **Average** number of operations.
 
-## Visualization
+## Credits / References
 
 You can also visually inspect how the sorting algorithm performs using an external visualizer project.
+
+A popular option is **Push Swap Visualizer** - an **external project** to visualize push_swap operations:
+
+🔗 https://github.com/o-reo/push_swap_visualizer
