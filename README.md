@@ -47,6 +47,15 @@ The program manipulates the stacks with the following operations:
 - The bonus program verifies whether a given sequence of operations correctly sorts the numbers provided as arguments.
 - It reads operations from standard input using `get_next_line()` and prints OK if the list is sorted, or KO otherwise.
 
+
+<br>
+
+## Platform support
+
+This project is developed for Unix-like systems, primarily Linux. It uses Unix-oriented tooling and a Makefile-based build system, so it is generally not intended to run natively on Windows without adaptation. On Windows, the recommended way to build and run it is through WSL.
+
+<br>
+
 ## Instructions
 
 ### Compile mandatory part
@@ -102,6 +111,8 @@ ARG=$(shuf -i 1-10000 -n 500 | tr '\n' ' ')
 ./push_swap $ARG | ./checker $ARG
 ```
 
+<br>
+
 ## More Testing
 
 A `tests/` folder is provided for easier testing and benchmarking. It contains:
@@ -127,6 +138,8 @@ A `tests/` folder is provided for easier testing and benchmarking. It contains:
 - The script uses the bonus checker to verify that the numbers are sorted correctly.
 - It will prompt for the number of runs and generate random test cases.
 - At the end, it will report **Best**, **Worst**, and **Average** number of operations.
+
+<br>
 
 ## Credits / References
 
